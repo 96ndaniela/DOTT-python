@@ -5,8 +5,8 @@ pipeline {
 	stage('SonarCloud') {
  	    environment {
     	        SCANNER_HOME = tool 'MySQScanner'
-   	        ORGANIZATION = "victor1795-github"
-    	        PROJECT_NAME = "DOTT-python"
+   	        ORGANIZATION = "victor1795"
+    	        PROJECT_NAME = "Victor1795_DOTT-python"
             }
             steps {
                 withSonarQubeEnv('MySQServer') {
