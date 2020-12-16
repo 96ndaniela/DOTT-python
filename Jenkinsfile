@@ -25,6 +25,11 @@ pipeline {
         }
         stage('Hello1') {
             steps {
+                sh 'python tests.py'
+            }
+        }	    
+        stage('Hello1') {
+            steps {
                 echo 'Hello World'
             }
         }
