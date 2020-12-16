@@ -5,7 +5,7 @@ pipeline {
 	stage ('Dockerbuild'){
 	    steps {
 	        sh 'sudo docker build -t pym .'
-		sh 'sudo docker run -d -name container_from_dockerfile -p 8000:8000 pym'
+		sh 'sudo docker run -d --name =container_from_dockerfile -p 8000:8000 pym'
 	    }
 	}
 	stage('SonarCloud') {
