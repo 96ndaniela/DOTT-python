@@ -30,7 +30,7 @@ pipeline {
                         sh 'python tests.py'
                     }
                     catch (err) {
-                        echo err.getMesage()
+                        echo err.getMessage()
                     }
 		}
 	        echo currentBuild.result
