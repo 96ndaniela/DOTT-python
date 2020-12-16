@@ -23,7 +23,7 @@ pipeline {
                 }
             }
         }
-        stage('Hello1') {
+        stage('Unit Test') {
             steps {
                 sh 'python tests.py'
             }
