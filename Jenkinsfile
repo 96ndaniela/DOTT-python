@@ -25,8 +25,16 @@ pipeline {
         }
         stage('Unit Test') {
             steps {
-                sh 'python tests.py'
-            }
+		script {
+		    try {
+                        sh 'python tests.py'
+                    }
+                    catch (err) {
+                        echo err.getMesage()
+                    }
+		}
+	        echo currentBuild.result
+	    }
         }	    
         stage('Hello1') {
             steps {
