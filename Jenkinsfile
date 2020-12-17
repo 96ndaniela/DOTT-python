@@ -5,12 +5,12 @@ pipeline {
 	stage ('Dockerbuild'){
 	    steps {
 		script {
-	            try {
+//	            try {
 	                sh 'sudo docker build -t pym .'
-		    }
-		    catch (err) {
-	                echo err.getMessage()
-                    }
+//		    }
+//		    catch (err) {
+//	                echo err.getMessage()
+//                    }
 		}
 	        echo currentBuild.result
 	    }
