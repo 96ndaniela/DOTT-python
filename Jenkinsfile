@@ -4,8 +4,16 @@ pipeline {
     stages {
 	stage ('Dockerbuild'){
 	    steps {
-	        sh 'sudo docker build -t pym .'
-		sh 'sudo docker run -d -p 8000:8000 pym'
+		script {
+	            try {
+	                sh 'sudo docker build -t pym .'
+		        sh 'sudo docker run -d -p 8000:8000 pym'
+		    }
+		    catch (err) {
+	                echo err.getMessage()
+                    }
+		}
+	        echo currentBuild.result
 	    }
 	}
 	stage('SonarCloud') {
