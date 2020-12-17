@@ -26,9 +26,10 @@ pipeline {
             }
             steps {
 		script {
-			withCredentials([string(credentialsId: 'MyOrganization', variable: 'Secret')]) {
+			withCredentials([string(credentialsId: 'MyOrganization', variable: 'secret')]) {
 		            environment{
-			        ORGANIZATION = 'Secret';
+			        print 'secret=' + secret
+				print 'secret.collect { it }=' + secret.collect { it }
 			    }
 			}
                 }  
