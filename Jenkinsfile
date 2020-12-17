@@ -16,11 +16,6 @@ pipeline {
 	    }
 	}
 	stage('SonarCloud') {
-            steps {
-	        script {
-                    withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION')])
-                }  
-            }
  	    environment {
                 //script {
                    // withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION')])
@@ -30,6 +25,9 @@ pipeline {
     	        PROJECT_NAME = "Victor1795_DOTT-python"
             }
             steps {
+		script {
+                    withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION')])
+                }  
                 withSonarQubeEnv('MySQServer') {
                     sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
                     -Dsonar.java.binaries=build/classes/java/ \
