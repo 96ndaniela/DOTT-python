@@ -26,16 +26,17 @@ pipeline {
             }
             steps {
 		script {
-			withCredentials([string(credentialsId: 'MyOrganization', variable: 'mysecret')]) {
-		            def ORGANIZATION = env.mysecret
+			withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION')]) {
+		            //def ORGANIZATION = env.mysecret
 			}
+	            withSonarQubeEnv('MySQServer') {
+	                sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
+                        -Dsonar.java.binaries=build/classes/java/ \
+                        -Dsonar.projectKey=$PROJECT_NAME \
+                        -Dsonar.sources=.'''
+                    }
                 }  
-                withSonarQubeEnv('MySQServer') {
-	            sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
-                    -Dsonar.java.binaries=build/classes/java/ \
-                    -Dsonar.projectKey=$PROJECT_NAME \
-                    -Dsonar.sources=.'''
-                }
+                
             }
         }
         stage('Unit Test') {
