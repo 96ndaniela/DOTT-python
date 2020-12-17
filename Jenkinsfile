@@ -27,7 +27,7 @@ pipeline {
             steps {
 		script {
 			withCredentials([string(credentialsId: 'MyOrganization', variable: 'mysecret')]) {
-		            ORGANIZATION = "${mysecret}"
+		            ORGANIZATION = '${mysecret}'
 			}
                 }  
                 withSonarQubeEnv('MySQServer') {
