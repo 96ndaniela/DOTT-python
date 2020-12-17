@@ -16,9 +16,15 @@ pipeline {
 	    }
 	}
 	stage('SonarCloud') {
+            //script {
+             //   withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION')])
+           // }
  	    environment {
+                script {
+                    withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION')])
+                }
     	        SCANNER_HOME = tool 'MySQScanner'
-   	        ORGANIZATION = "victor1795"
+   	        //ORGANIZATION = "victor1795"
     	        PROJECT_NAME = "Victor1795_DOTT-python"
             }
             steps {
