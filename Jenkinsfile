@@ -7,7 +7,6 @@ pipeline {
 		script {
 	            try {
 	                sh 'sudo docker build -t pym .'
-		        sh 'sudo docker run -d -p 8000:8000 pym'
 		    }
 		    catch (err) {
 	                echo err.getMessage()
@@ -47,6 +46,7 @@ pipeline {
         stage('Hello1') {
             steps {
                 echo 'Hello World'
+	        //sh 'sudo docker run -d -p 8000:8000 pym'
             }
         }
     }
