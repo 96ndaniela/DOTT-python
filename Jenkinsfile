@@ -26,7 +26,9 @@ pipeline {
             }
             steps {
 		script {
-                    withCredentials([string(credentialsId: 'MyOrganization', variable: 'Secret')])
+			withCredentials([string(credentialsId: 'MyOrganization', variable: 'Secret')]) {
+			    ORGANIZATION = "Secret"
+			}
                 }  
                 withSonarQubeEnv('MySQServer') {
                     sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
