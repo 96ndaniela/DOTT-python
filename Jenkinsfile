@@ -34,7 +34,7 @@ pipeline {
             steps {
 		script {
 		    try {
-                        sh 'python -m pytest tests.py'
+                        sh 'pytest tests.py'
                     }
                     catch (err) {
                         echo err.getMessage()
