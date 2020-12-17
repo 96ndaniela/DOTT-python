@@ -27,11 +27,11 @@ pipeline {
             steps {
 		script {
 			withCredentials([string(credentialsId: 'MyOrganization', variable: 'mysecret')]) {
-		            def ORGANIZATION = '${mysecret}'
+		            def ORGANIZATION = env.mysecret
 			}
                 }  
                 withSonarQubeEnv('MySQServer') {
-	            sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization='${mysecret}' \
+	            sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
                     -Dsonar.java.binaries=build/classes/java/ \
                     -Dsonar.projectKey=$PROJECT_NAME \
                     -Dsonar.sources=.'''
