@@ -56,7 +56,7 @@ pipeline {
         stage('Hello1') {
             steps {
                 echo 'Hello World'
-	        //sh 'sudo docker run -d -p 8000:8000 pym'
+	        sh 'sudo docker run -d -p 8000:8000 pym'
             }
         }
     }
