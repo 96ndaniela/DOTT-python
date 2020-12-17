@@ -12,7 +12,7 @@ pipeline {
 //	                echo err.getMessage()
 //                    }
 		}
-	        echo currentBuild.result
+//	        echo currentBuild.result
 	    }
 	}
 	stage('SonarCloud') {
@@ -34,7 +34,7 @@ pipeline {
             steps {
 		script {
 		    try {
-                        sh 'python tests.py'
+                        sh 'python -m pytest tests.py'
                     }
                     catch (err) {
                         echo err.getMessage()
