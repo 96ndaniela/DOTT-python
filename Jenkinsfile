@@ -16,8 +16,10 @@ pipeline {
 	    }
 	}
 	stage('SonarCloud') {
-            script {
-                withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION')])
+            steps {
+	        script {
+                    withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION')])
+                }  
             }
  	    environment {
                 //script {
