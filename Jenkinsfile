@@ -1,6 +1,13 @@
 pipeline {
     agent any
-
+    environment {
+                //script {
+                   // withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION')])
+                //}
+        SCANNER_HOME = tool 'MySQScanner'
+   	        //ORGANIZATION = "victor1795"
+    	        //PROJECT_NAME = "Victor1795_DOTT-python"
+    }
     stages {
 	stage ('Dockerbuild'){
 	    steps {
@@ -16,14 +23,7 @@ pipeline {
 	    }
 	}
 	stage('SonarCloud') {
- 	    environment {
-                //script {
-                   // withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION')])
-                //}
-    	        SCANNER_HOME = tool 'MySQScanner'
-   	        //ORGANIZATION = "victor1795"
-    	        //PROJECT_NAME = "Victor1795_DOTT-python"
-            }
+ 	   
             steps {
 		script {
 			withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION'), string(credentialsId: 'ProjectKey', variable: 'PROJECT_NAME')]) {
