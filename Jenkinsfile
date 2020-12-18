@@ -1,15 +1,15 @@
 pipeline {
     agent any
     environment {
-        script {
-            withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION'), string(credentialsId: 'ProjectKey', variable: 'PROJECT_NAME')]) {
-	        ORG = '$ORGANIZATION'
-		echo '$ORG'
-	    }
-        }
         SCANNER_HOME = tool 'MySQScanner'
    	        //ORGANIZATION = "victor1795"
     	        //PROJECT_NAME = "Victor1795_DOTT-python"
+    }
+    script {
+        withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION'), string(credentialsId: 'ProjectKey', variable: 'PROJECT_NAME')]) {
+	    //ORG = '$ORGANIZATION'
+	    //echo '$ORG'
+	}
     }
     stages {
 	stage ('Dockerbuild'){
