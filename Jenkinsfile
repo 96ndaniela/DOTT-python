@@ -55,8 +55,16 @@ pipeline {
         }	    
         stage('Hello1') {
             steps {
-                echo 'Hello World'
-	        sh 'sudo docker run -d -p 8000:8000 pym'
+		script {
+	            try {
+                        echo 'Hello World'
+	                sh 'sudo docker run -d -p 8000:8000 pym'
+		    }
+                    catch (err) {
+                        echo err.getMessage()
+                    }
+		}
+	        echo currentBuild.result
             }
         }
     }
