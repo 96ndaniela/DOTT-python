@@ -72,7 +72,7 @@ pipeline {
             steps {
 		script {
                     environment {
-                        TARGET_CONTAINERID = 'sudo docker ps | grep ash | awk '{ print $1 }'
+                        TARGET_CONTAINERID = 'sudo docker ps | grep ash | awk '{ print $1 }''
                     }
 	            //try {
                         echo 'Hello World'
