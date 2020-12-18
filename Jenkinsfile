@@ -5,12 +5,12 @@ pipeline {
    	        //ORGANIZATION = "victor1795"
     	        //PROJECT_NAME = "Victor1795_DOTT-python"
     }
-    script {
-        withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION'), string(credentialsId: 'ProjectKey', variable: 'PROJECT_NAME')]) {
+    //script {
+        //withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION'), string(credentialsId: 'ProjectKey', variable: 'PROJECT_NAME')]) {
 	    //ORG = '$ORGANIZATION'
 	    //echo '$ORG'
-	}
-    }
+	//}
+    //}
     stages {
 	stage ('Dockerbuild'){
 	    steps {
@@ -29,7 +29,7 @@ pipeline {
  	   
             steps {
 		script {
-			//withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION'), string(credentialsId: 'ProjectKey', variable: 'PROJECT_NAME')]) {
+			withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION'), string(credentialsId: 'ProjectKey', variable: 'PROJECT_NAME')]) {
 		            //def ORGANIZATION = env.mysecret
 			
 	                  withSonarQubeEnv('MySQServer') {
@@ -38,7 +38,7 @@ pipeline {
                             -Dsonar.projectKey=$PROJECT_NAME \
                             -Dsonar.sources=.'''
 		          }
-                       //}
+                       }
                 }  
                 
             }
@@ -52,7 +52,7 @@ pipeline {
 			sh 'ls'
 			sh 'pwd'
 			    
-			//withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION'), string(credentialsId: 'ProjectKey', variable: 'PROJECT_NAME')]) {
+			withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION'), string(credentialsId: 'ProjectKey', variable: 'PROJECT_NAME')]) {
 			    sh 'cd $WORKSPACE/'
                             sh 'coverage run -m pytest $WORKSPACE/tests.py -v | coverage report | coverage xml'
 			    //sh 'less $WORKSPACE/coverage.xml'
@@ -62,7 +62,7 @@ pipeline {
                                -Dsonar.projectKey=$PROJECT_NAME \
                                -Dsonar.python.coverage.reportPaths=$WORKSPACE/coverage.xml'''
 			    }
-			//}
+			}
                   //  }
                     //catch (err) {
                       //  echo err.getMessage()
