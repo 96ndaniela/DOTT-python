@@ -2,8 +2,7 @@ pipeline {
     agent any
     environment {
         script {
-            withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION'), string(credentialsId: 'ProjectKey', variable: 'PROJECT_NAME')]) {
-	    }
+            withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION'), string(credentialsId: 'ProjectKey', variable: 'PROJECT_NAME')])
         }
         SCANNER_HOME = tool 'MySQScanner'
    	        //ORGANIZATION = "victor1795"
