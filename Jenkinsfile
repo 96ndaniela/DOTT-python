@@ -75,7 +75,7 @@ pipeline {
                         TARGET_CONTAINERID = 'sudo docker ps | grep ash | awk '{ print $1 }''
                     }
 	            try {
-			echo '${TARGET_CONTAINERID}'
+			echo $TARGET_CONTAINERID
                         echo 'Hello World'
 			//sh 'sudo docker ps | grep ash | awk '{ print $1 }'
 			sh 'sudo docker rm -f $(TARGET_CONTAINERID)'
