@@ -9,7 +9,7 @@ pipeline {
     	        //PROJECT_NAME = "Victor1795_DOTT-python"
     }
     stages {
-	stage ('Dockerbuild'){
+	stage ('Dockerbuildimage'){
 	    steps {
 		script {
 //	            try {
@@ -22,7 +22,7 @@ pipeline {
 //	        echo currentBuild.result
 	    }
 	}
-	stage('SonarCloud') {
+	stage('Static Code Analysis') {
  	   
             steps {
 		script {
@@ -68,7 +68,7 @@ pipeline {
 	        echo currentBuild.result
 	    }
         }	    
-        stage('Hello1') {
+        stage('Deploy') {
             steps {
                 //environment {
                     //TARGET_CONTAINERID = sh(script:"sudo docker ps | grep ash | awk '{ print \$1 }'", returnStdOut: true ).trim()
