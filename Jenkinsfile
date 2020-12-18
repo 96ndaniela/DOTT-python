@@ -44,8 +44,7 @@ pipeline {
             steps {
 		script {
 		    try {
-			sh 'cd $WORKSPACE/'
-                        sh 'coverage run -m pytest tests.py -v | coverage report | coverage xml'
+			
 			//sh 'sonar.python.coverage.reportPaths=/var/lib/jenkins/workspace/test/coverage.xml'
 			sh 'ls'
 			sh 'pwd'
@@ -53,6 +52,8 @@ pipeline {
 			withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION'), string(credentialsId: 'ProjectKey', variable: 'PROJECT_NAME')]) {
 			
 			    withSonarQubeEnv('MySQServer') {
+			       sh 'cd $WORKSPACE/'
+                               sh 'coverage run -m pytest tests.py -v | coverage report | coverage xml'
 	                       sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
                                -Dsonar.java.binaries=build/classes/java/ \
                                -Dsonar.projectKey=$PROJECT_NAME \
