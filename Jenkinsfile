@@ -70,9 +70,9 @@ pipeline {
         }	    
         stage('Hello1') {
             steps {
-                environment {
-                    TARGET_CONTAINERID = sh(script:"sudo docker ps | grep ash | awk '{ print \$1 }'", returnStdOut: true ).trim()
-                }
+                //environment {
+                    //TARGET_CONTAINERID = sh(script:"sudo docker ps | grep ash | awk '{ print \$1 }'", returnStdOut: true ).trim()
+                //}
 		script {
 	            try {
 			//'echo $TARGET_CONTAINERID'
