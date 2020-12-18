@@ -44,6 +44,7 @@ pipeline {
             steps {
 		script {
 		    try {
+			sh 'cd $WORKSPACE/'
                         sh 'coverage run -m pytest tests.py -v | coverage report | coverage xml'
 			//sh 'sonar.python.coverage.reportPaths=/var/lib/jenkins/workspace/test/coverage.xml'
 			sh 'ls'
