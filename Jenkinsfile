@@ -44,7 +44,7 @@ pipeline {
             steps {
 		script {
 		    try {
-                        sh 'coverage run -m pytest tests.py -v '
+                        sh 'coverage run -m pytest tests.py -v | coverage report'
                     }
                     catch (err) {
                         echo err.getMessage()
