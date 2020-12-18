@@ -48,6 +48,7 @@ pipeline {
 			//sh 'sonar.python.coverage.reportPaths=/var/lib/jenkins/workspace/test/coverage.xml'
 			sh 'ls'
 			sh 'pwd'
+			echo 'path'
 			
 			withSonarQubeEnv('MySQServer') {
 	                   sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
