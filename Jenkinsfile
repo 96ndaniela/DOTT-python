@@ -53,7 +53,7 @@ pipeline {
 			
 			    withSonarQubeEnv('MySQServer') {
 			       sh 'cd $WORKSPACE/'
-                               sh 'coverage run -m pytest tests.py -v | coverage report | coverage xml'
+                               sh 'coverage run -m pytest /$WORKSPACE/tests.py -v | coverage report | coverage xml'
 	                       sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
                                -Dsonar.java.binaries=build/classes/java/ \
                                -Dsonar.projectKey=$PROJECT_NAME \
