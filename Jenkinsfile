@@ -45,6 +45,7 @@ pipeline {
 		script {
 		    try {
                         sh 'coverage run -m pytest tests.py -v | coverage report | coverage xml'
+			sh 'sonar.python.coverage.reportPaths=/var/lib/jenkins/workspace/test'
                     }
                     catch (err) {
                         echo err.getMessage()
