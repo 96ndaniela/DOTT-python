@@ -45,7 +45,16 @@ pipeline {
 		script {
 		    try {
                         sh 'coverage run -m pytest tests.py -v | coverage report | coverage xml'
-			sh 'sonar.python.coverage.reportPaths=/var/lib/jenkins/workspace/test/coverage.xml'
+			//sh 'sonar.python.coverage.reportPaths=/var/lib/jenkins/workspace/test/coverage.xml'
+			sh 'ls'
+			sh 'pwd'
+			
+			withSonarQubeEnv('MySQServer') {
+	                   sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
+                           -Dsonar.java.binaries=build/classes/java/ \
+                           -Dsonar.projectKey=$PROJECT_NAME \
+                           -Dsonar.python.coverage.reportPaths=/var/lib/jenkins/workspace/test/coverage.xml'''
+			
                     }
                     catch (err) {
                         echo err.getMessage()
