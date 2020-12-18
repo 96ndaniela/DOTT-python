@@ -3,7 +3,8 @@ pipeline {
     environment {
         script {
             withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION'), string(credentialsId: 'ProjectKey', variable: 'PROJECT_NAME')]) {
-	        echo '$ORGANIZATION'
+	        ORG = '$ORGANIZATION'
+		echo '$ORG'
 	    }
         }
         SCANNER_HOME = tool 'MySQScanner'
