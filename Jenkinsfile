@@ -48,13 +48,15 @@ pipeline {
 			//sh 'sonar.python.coverage.reportPaths=/var/lib/jenkins/workspace/test/coverage.xml'
 			sh 'ls'
 			sh 'pwd'
-			echo '$PATH'
+			    
+			withCredentials([string(credentialsId: 'MyOrganization', variable: 'ORGANIZATION'), string(credentialsId: 'ProjectKey', variable: 'PROJECT_NAME')]) {
 			
-			withSonarQubeEnv('MySQServer') {
-	                   sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
-                           -Dsonar.java.binaries=build/classes/java/ \
-                           -Dsonar.projectKey=$PROJECT_NAME \
-                           -Dsonar.python.coverage.reportPaths=$WORKSPACE/coverage.xml'''
+			    withSonarQubeEnv('MySQServer') {
+	                       sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
+                               -Dsonar.java.binaries=build/classes/java/ \
+                               -Dsonar.projectKey=$PROJECT_NAME \
+                               -Dsonar.python.coverage.reportPaths=$WORKSPACE/coverage.xml'''
+			    }
 			}
                     }
                     catch (err) {
