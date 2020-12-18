@@ -54,7 +54,7 @@ pipeline {
                            -Dsonar.java.binaries=build/classes/java/ \
                            -Dsonar.projectKey=$PROJECT_NAME \
                            -Dsonar.python.coverage.reportPaths=/var/lib/jenkins/workspace/test/coverage.xml'''
-			
+			}
                     }
                     catch (err) {
                         echo err.getMessage()
