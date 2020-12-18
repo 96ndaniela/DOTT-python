@@ -43,7 +43,7 @@ pipeline {
         stage('Unit Test') {
             steps {
 		script {
-		    try {
+		   // try {
 			
 			//sh 'sonar.python.coverage.reportPaths=/var/lib/jenkins/workspace/test/coverage.xml'
 			sh 'ls'
@@ -60,10 +60,10 @@ pipeline {
                                -Dsonar.python.coverage.reportPaths=$WORKSPACE/coverage.xml'''
 			    }
 			}
-                    }
-                    catch (err) {
-                        echo err.getMessage()
-                    }
+                  //  }
+                    //catch (err) {
+                      //  echo err.getMessage()
+                    //}
 		}
 	        echo currentBuild.result
 	    }
