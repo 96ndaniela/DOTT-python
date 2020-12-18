@@ -75,10 +75,10 @@ pipeline {
                 }
 		script {
 	            try {
-			'echo $TARGET_CONTAINERID'
-                        'echo "Hello World"'
+			//'echo $TARGET_CONTAINERID'
+                        //'echo "Hello World"'
 			//sh 'sudo docker ps | grep ash | awk '{ print $1 }'
-			sh 'sudo docker rm -f $TARGET_CONTAINERID'
+			sh 'sudo docker rm -f $(sudo docker ps | grep ash | awk \'{ print $1 }\')'
 	                sh 'sudo docker run -d -p 8000:8000 pym'
 		    }
                     catch (err) {
