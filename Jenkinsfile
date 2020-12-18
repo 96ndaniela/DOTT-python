@@ -74,16 +74,16 @@ pipeline {
                     environment {
                         TARGET_CONTAINERID = 'sudo docker ps | grep ash | awk '{ print $1 }''
                     }
-	            //try {
+	            try {
 			echo '${TARGET_CONTAINERID}'
                         echo 'Hello World'
 			//sh 'sudo docker ps | grep ash | awk '{ print $1 }'
 			sh 'sudo docker rm -f $(TARGET_CONTAINERID)'
 	                sh 'sudo docker run -d -p 8000:8000 pym'
-		    //}
-                    //catch (err) {
-                      //  echo err.getMessage()
-                    //}
+		    }
+                    catch (err) {
+                        echo err.getMessage()
+                    }
 		}
 	        echo currentBuild.result
             }
