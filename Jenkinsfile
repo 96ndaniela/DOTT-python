@@ -73,7 +73,7 @@ pipeline {
 		script {
 	            //try {
                         echo 'Hello World'
-			sh 'sudo docker rm -f $(sudo docker ps | grep ash | awk '{ print $1 }')
+			sh 'sudo docker rm -f $(sudo docker ps | grep ash | awk '{ print $1 }')'
 	                sh 'sudo docker run -d -p 8000:8000 pym'
 		    //}
                     //catch (err) {
